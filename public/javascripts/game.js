@@ -374,7 +374,7 @@ function hitGhost (player, ghost)
     
     wave.stop()
     died.play()
-    music.stop()
+    music.setVolume(0)
 }
 
 // module.exports = gameOver
