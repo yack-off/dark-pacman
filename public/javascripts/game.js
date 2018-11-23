@@ -37,6 +37,7 @@ function preload ()
         frameWidth: 42, frameHeight: 37
     })
     this.load.image('dead', '../images/dead.png')
+    this.load.audio('vaka', '../audios/vak.ogg')
 }
 
 function create ()
@@ -45,7 +46,16 @@ function create ()
     count = 0
     countOfCoins = this.add.text(290, 275, '0',{ fontSize: '32px', fill: 'yellow'})
     notAPlace = this.physics.add.staticGroup();
+
+    music = this.sound.add('vaka');
     
+    randNumW = Math.floor(Math.random() * (600 + 1))
+
+    randNumH = Math.floor(Math.random() * (600 + 1))
+
+    randVelH = Math.floor(Math.random() * (200 - 100 + 1) + 100)
+
+    randVelV = Math.floor(Math.random() * (300 - 200 + 1) + 200)
     
     notAPlace.create(570,300,'right')
     notAPlace.create(33,300,'left')
@@ -202,12 +212,13 @@ function create ()
     this.physics.add.overlap(player, coins6, collectCoins, null, this);
 
 
-    let logo = this.physics.add.image(400, 100, 'ghost');
+    let logo = this.physics.add.image(randNumW, randNumH, 'ghost');
 
-    logo.setVelocity(100, 200);
+    logo.setVelocity(randVelH, randVelV);
     logo.setBounce(1, 1);
     logo.setCollideWorldBounds(true);
     this.physics.add.collider(player, logo, hitGhost, null, this);
+
 
 
 }
@@ -222,6 +233,16 @@ function update ()
         player.setVelocityX(-160);
         
         player.anims.play('left', true);
+
+        music.play();
+
+        randNumW = Math.floor(Math.random() * (600 + 1))
+
+        randNumH = Math.floor(Math.random() * (600 + 1))
+
+        randVelH = Math.floor(Math.random() * (200 - 100 + 1) + 100)
+
+        randVelv = Math.floor(Math.random() * (300 - 200 + 1) + 200)
     }
     else if (cursors.right.isDown)
     {
@@ -229,6 +250,15 @@ function update ()
         player.setVelocityX(160);
         
         player.anims.play('right', true);
+        music.play();
+
+        randNumW = Math.floor(Math.random() * (600 + 1))
+
+        randNumH = Math.floor(Math.random() * (600 + 1))
+
+        randVelH = Math.floor(Math.random() * (200 - 100 + 1) + 100)
+
+        randVelv = Math.floor(Math.random() * (300 - 200 + 1) + 200)
     }
     else if (cursors.up.isDown)
     {
@@ -236,6 +266,15 @@ function update ()
         player.setVelocityY(-160);
         
         player.anims.play('up', true);
+        music.play();
+
+        randNumW = Math.floor(Math.random() * (600 + 1))
+
+        randNumH = Math.floor(Math.random() * (600 + 1))
+
+        randVelH = Math.floor(Math.random() * (200 - 100 + 1) + 100)
+
+        randVelv = Math.floor(Math.random() * (300 - 200 + 1) + 200)
     }
     else if (cursors.down.isDown)
     {
@@ -243,6 +282,15 @@ function update ()
         player.setVelocityY(160);
         
         player.anims.play('down', true);
+        music.play();
+
+        randNumW = Math.floor(Math.random() * (600 + 1))
+
+        randNumH = Math.floor(Math.random() * (600 + 1))
+
+        randVelH = Math.floor(Math.random() * (200 - 100 + 1) + 100)
+
+        randVelv = Math.floor(Math.random() * (300 - 200 + 1) + 200)
     }
 
 
@@ -291,9 +339,9 @@ function collectCoins (player, star){
 
         });
 
-        let logo = this.physics.add.image(400, 100, 'ghost');
+        let logo = this.physics.add.image(randNumW, randNumH, 'ghost');
 
-        logo.setVelocity(100, 200);
+        logo.setVelocity(randVelH, randVelV);
         logo.setBounce(1, 1);
         logo.setCollideWorldBounds(true);
         this.physics.add.collider(player, logo, hitGhost, null, this);
@@ -312,3 +360,5 @@ function hitGhost (player, ghost)
 
     this.add.image(25,-55,'dead').setOrigin(0,0)
 }
+
+module.exports = true
