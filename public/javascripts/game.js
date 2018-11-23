@@ -38,6 +38,8 @@ function preload ()
     })
     this.load.image('dead', '../images/dead.png')
     this.load.audio('vaka', '../audios/vak.ogg')
+    this.load.audio('wave', '../audios/mp3.mp3')
+    this.load.audio('died', '../audios/died.mp3')
 }
 
 function create ()
@@ -48,6 +50,15 @@ function create ()
     notAPlace = this.physics.add.staticGroup();
 
     music = this.sound.add('vaka');
+    music.setLoop(true)
+    music.setRate(2.0)
+
+    wave = this.sound.add('wave');
+    wave.setVolume(0.1)
+    wave.setLoop(true)
+
+    died = this.sound.add('died');
+
     
     randNumW = Math.floor(Math.random() * (600 + 1))
 
@@ -218,6 +229,7 @@ function create ()
     logo.setBounce(1, 1);
     logo.setCollideWorldBounds(true);
     this.physics.add.collider(player, logo, hitGhost, null, this);
+    wave.play()
 
 
 
@@ -359,6 +371,10 @@ function hitGhost (player, ghost)
     gameOver = true;
 
     this.add.image(25,-55,'dead').setOrigin(0,0)
+    
+    wave.stop()
+    died.play()
+    music.stop()
 }
 
-module.exports = true
+// module.exports = gameOver

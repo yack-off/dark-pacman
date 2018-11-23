@@ -1,6 +1,8 @@
 body { 
-  padding: 0; 
-  margin: 0; 
+  margin: 176px; /* Убираем отступы */
+  height: 100%; /* Высота страницы */
+  background: url(https://i.pinimg.com/originals/bb/53/a5/bb53a5e2db22d7c1fe7457c921ce1559.jpg) 100% 100% no-repeat; /* Добавляем фон */
+  background-size: cover; /* Масштабируем фон */
 }
 
 canvas{
